@@ -40,7 +40,7 @@ export default class CreateTransactions1587148296410
             isNullable: false,
           },
           {
-            name: 'create_at',
+            name: 'created_at',
             type: 'timestamp',
             default: 'now()',
           },

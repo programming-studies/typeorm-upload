@@ -20,7 +20,7 @@ export default class CreateCategories1587146600116
             isNullable: false,
           },
           {
-            name: 'create_at',
+            name: 'created_at',
             type: 'timestamp',
             default: 'now()',
           },
