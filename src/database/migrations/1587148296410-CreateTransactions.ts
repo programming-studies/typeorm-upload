@@ -31,7 +31,7 @@ export default class CreateTransactions1587148296410
           },
           {
             name: 'value',
-            type: 'money',
+            type: 'numeric',
             isNullable: false,
           },
           {

@@ -3,6 +3,7 @@
 node_modules/
 build/
 temp/
+debug.log
 
 tmp/*
 !tmp/.gitkeep
