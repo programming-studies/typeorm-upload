@@ -1,8 +1,14 @@
-// import AppError from '../errors/AppError';
+import TransactionsRepository from '../repositories/TransactionsRepository';
 
 class DeleteTransactionService {
-  public async execute(): Promise<void> {
-    // TODO
+  private transactionRepository: TransactionsRepository;
+
+  constructor(transactionRepository: TransactionsRepository) {
+    this.transactionRepository = transactionRepository;
+  }
+
+  public async execute(id: number): Promise<void> {
+    await this.transactionRepository.delete(id);
   }
 }
 

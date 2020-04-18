@@ -3,7 +3,7 @@ import { getCustomRepository } from 'typeorm';
 import TransactionsRepository from '../repositories/TransactionsRepository';
 import CreateTransactionService from '../services/CreateTransactionService';
 import ListTransactionService from '../services/ListTransactionsService';
-// import DeleteTransactionService from '../services/DeleteTransactionService';
+import DeleteTransactionService from '../services/DeleteTransactionService';
 // import ImportTransactionsService from '../services/ImportTransactionsService';
 
 const transactionsRouter = Router();
@@ -33,7 +33,13 @@ transactionsRouter.post('/', async (request, response) => {
 });
 
 transactionsRouter.delete('/:id', async (request, response) => {
-  // TODO
+  const transactionsRepository = getCustomRepository(TransactionsRepository);
+  const deleteTransactionService = new DeleteTransactionService(
+    transactionsRepository,
+  );
+  const id = (request.params.id as unknown) as number;
+  deleteTransactionService.execute(id);
+  return response.status(204).json({});
 });
 
 transactionsRouter.post('/import', async (request, response) => {
