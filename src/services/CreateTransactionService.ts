@@ -4,6 +4,7 @@ import { getRepository } from 'typeorm';
 import Transaction from '../models/Transaction';
 import TransactionsRepository from '../repositories/TransactionsRepository';
 import Category from '../models/Category';
+import AppError from '../errors/AppError';
 
 interface RequestDto {
   title: string;
@@ -24,6 +25,15 @@ class CreateTransactionService {
     type,
     category: categoryTitle,
   }: RequestDto): Promise<Transaction> {
+    if (type === 'outcome') {
+      const { total } = await this.transactionRepository.getBalance();
+      if (value > total) {
+        throw new AppError(
+          `The outcome value (${value}) can't be greater then income total (${total})`,
+        );
+      }
+    }
+
     const categoryRepository = getRepository(Category);
     let category = await categoryRepository.findOne({
       where: { title: categoryTitle },
