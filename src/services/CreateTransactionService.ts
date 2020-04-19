@@ -6,7 +6,7 @@ import TransactionsRepository from '../repositories/TransactionsRepository';
 import Category from '../models/Category';
 import AppError from '../errors/AppError';
 
-interface RequestDto {
+export interface RequestDto {
   title: string;
   value: number;
   type: 'income' | 'outcome';
