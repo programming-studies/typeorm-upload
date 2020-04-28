@@ -49,9 +49,8 @@ class CreateTransactionService {
       category_id: category.id,
     });
     await this.transactionRepository.save(transaction);
-    transaction.category = category;
-    delete transaction.category_id;
-    return transaction;
+    const record = await this.transactionRepository.findOne(transaction.id);
+    return record || ({} as Transaction);
   }
 }
 
